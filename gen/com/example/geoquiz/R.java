@@ -2247,7 +2247,9 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int action_settings=0x7f0a0015;
         public static final int app_name=0x7f0a0014;
+        public static final int correct_toast=0x7f0a0019;
         public static final int false_button=0x7f0a0018;
+        public static final int incorrect_toast=0x7f0a001a;
         public static final int question_text=0x7f0a0016;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
