@@ -17,7 +17,7 @@ public class QuizActivity extends ActionBarActivity {
 	private Button mTrueButton;
 	private Button mFalseButton;
 	private Button mNextButton;
-	private TextView mTextView;
+	private TextView mQuestionTextView;
 	private TrueFalse[] mTrueFalseList = {
 		new TrueFalse(R.string.question_africa, false),
 		new TrueFalse(R.string.question_americas, true),
@@ -32,27 +32,44 @@ public class QuizActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz);
+		
 		mTrueButton = (Button) findViewById(R.id.true_button);
-		mFalseButton = (Button) findViewById(R.id.false_button);
-		mNextButton = (Button) findViewById(R.id.next_button);
-		mTextView = (TextView) findViewById(R.id.question_text_view);
-		
-//		mTextView.setText(mTrueFalseList[mCurrentIndex].getQuestion());
-		
 		mTrueButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(QuizActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
 			}
 		});
+		
+		mFalseButton = (Button) findViewById(R.id.false_button);
 		mFalseButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Toast.makeText(QuizActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
 			}
 		});
+		
+		mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+		
+		mNextButton = (Button) findViewById(R.id.next_button);
+		mNextButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
+				nextQuestion(mCurrentIndex);
+			}
+		});
+		nextQuestion(mCurrentIndex);
+
 	}
 
+	
+	private void nextQuestion(int currentIndex) {
+		int question = mTrueFalseList[currentIndex].getQuestion();
+		mQuestionTextView.setText(question);
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
