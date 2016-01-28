@@ -2252,17 +2252,19 @@ containing a value of this type.
         public static final int abc_toolbar_collapse_description=0x7f0a0004;
         public static final int action_settings=0x7f0a0015;
         public static final int app_name=0x7f0a0014;
-        public static final int back_button=0x7f0a0019;
-        public static final int correct_toast=0x7f0a001a;
+        public static final int back_button=0x7f0a001a;
+        public static final int back_description=0x7f0a001b;
+        public static final int correct_toast=0x7f0a001c;
         public static final int false_button=0x7f0a0017;
-        public static final int incorrect_toast=0x7f0a001b;
+        public static final int incorrect_toast=0x7f0a001d;
         public static final int next_button=0x7f0a0018;
-        public static final int question_africa=0x7f0a001e;
-        public static final int question_americas=0x7f0a001f;
-        public static final int question_asia=0x7f0a0020;
-        public static final int question_mideast=0x7f0a001d;
-        public static final int question_oceans=0x7f0a001c;
-        public static final int question_russia=0x7f0a0021;
+        public static final int next_description=0x7f0a0019;
+        public static final int question_africa=0x7f0a0020;
+        public static final int question_americas=0x7f0a0021;
+        public static final int question_asia=0x7f0a0022;
+        public static final int question_mideast=0x7f0a001f;
+        public static final int question_oceans=0x7f0a001e;
+        public static final int question_russia=0x7f0a0023;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated. May need to be localized
