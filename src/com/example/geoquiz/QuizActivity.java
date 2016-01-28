@@ -50,6 +50,14 @@ public class QuizActivity extends ActionBarActivity {
 		});
 		
 		mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
+		mQuestionTextView.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
+				nextQuestion(mCurrentIndex);
+			}
+		});
 		
 		mNextButton = (Button) findViewById(R.id.next_button);
 		mNextButton.setOnClickListener(new View.OnClickListener() {
