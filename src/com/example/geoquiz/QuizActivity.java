@@ -20,11 +20,12 @@ public class QuizActivity extends ActionBarActivity {
 	private Button mBackButton;
 	private TextView mQuestionTextView;
 	private TrueFalse[] mTrueFalseList = {
+		new TrueFalse(R.string.question_russia, false),
 		new TrueFalse(R.string.question_africa, false),
 		new TrueFalse(R.string.question_americas, true),
 		new TrueFalse(R.string.question_asia, true),
 		new TrueFalse(R.string.question_mideast, false),
-		new TrueFalse(R.string.question_oceans, true)			
+		new TrueFalse(R.string.question_oceans, true)
 	};
 	private int mCurrentIndex = 0;
 	

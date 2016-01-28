@@ -616,6 +616,7 @@ int string question_americas 0x7f0a001f
 int string question_asia 0x7f0a0020
 int string question_mideast 0x7f0a001d
 int string question_oceans 0x7f0a001c
+int string question_russia 0x7f0a0021
 int string status_bar_notification_info_overflow 0x7f0a0011
 int string true_button 0x7f0a0016
 int style AlertDialog_AppCompat 0x7f0b0042

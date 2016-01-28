@@ -2262,6 +2262,7 @@ containing a value of this type.
         public static final int question_asia=0x7f0a0020;
         public static final int question_mideast=0x7f0a001d;
         public static final int question_oceans=0x7f0a001c;
+        public static final int question_russia=0x7f0a0021;
         /**  Text to use when the number in a notification info is too large
          (greater than status_bar_notification_info_maxnum, defined in
          values/config.xml) and must be truncated. May need to be localized
