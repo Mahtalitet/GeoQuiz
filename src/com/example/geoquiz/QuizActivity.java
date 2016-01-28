@@ -17,6 +17,7 @@ public class QuizActivity extends ActionBarActivity {
 	private Button mTrueButton;
 	private Button mFalseButton;
 	private Button mNextButton;
+	private Button mBackButton;
 	private TextView mQuestionTextView;
 	private TrueFalse[] mTrueFalseList = {
 		new TrueFalse(R.string.question_africa, false),
@@ -68,6 +69,25 @@ public class QuizActivity extends ActionBarActivity {
 				nextQuestion(mCurrentIndex);
 			}
 		});
+		
+		mBackButton = (Button) findViewById(R.id.back_button);
+		mBackButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				if (mCurrentIndex != 0) {
+					mCurrentIndex--;
+					nextQuestion(mCurrentIndex);
+
+					
+				} else {
+					mCurrentIndex = Math.abs(mCurrentIndex - (mTrueFalseList.length-1));
+					nextQuestion(mCurrentIndex);
+				}
+			}
+		});
+		
 		nextQuestion(mCurrentIndex);
 
 	}
