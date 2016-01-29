@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class QuizActivity extends ActionBarActivity {
+	
+	public static final String TAG = "QuizACtivity";
 
 	private Button mTrueButton;
 	private Button mFalseButton;
@@ -31,9 +34,12 @@ public class QuizActivity extends ActionBarActivity {
 	private int mCurrentIndex = 0;
 	
 	
+	//Переопределение методов жизненного цикла активити
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "OnCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
 		
 		mTrueButton = (Button) findViewById(R.id.true_button);
@@ -89,31 +95,36 @@ public class QuizActivity extends ActionBarActivity {
 				nextQuestion(mCurrentIndex);
 			}
 		});
-		
-
-		
 		nextQuestion(mCurrentIndex);
 
 	}
-
 	
-	private void nextQuestion(int currentIndex) {
-		int question = mTrueFalseList[currentIndex].getQuestion();
-		mQuestionTextView.setText(question);
+	public void onStart () {
+		super.onStart();
+		Log.d(TAG, "onStart() called");
 	}
 	
-	private void checkAnswer(boolean userPressedTrue) {
-		boolean answer = mTrueFalseList[mCurrentIndex].isAnswer();
-		int messageId = 0;
-		
-		if (answer == userPressedTrue) {
-			messageId = R.string.correct_toast;
-			
-		} else {
-			messageId = R.string.incorrect_toast;
-		}
-		Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show();
+	public void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume() called");
 	}
+	
+	public void onPause() {
+		super.onPause();
+		Log.d(TAG, "onPause() called");
+	}
+	
+	public void onStop() {
+		super.onStop();
+		Log.d(TAG, "onStop() called");
+	}
+	
+	public void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy() called");
+	}
+	
+	//Методы для меню
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,4 +144,25 @@ public class QuizActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	// Самописные методы
+	private void nextQuestion(int currentIndex) {
+		int question = mTrueFalseList[currentIndex].getQuestion();
+		mQuestionTextView.setText(question);
+	}
+	
+	private void checkAnswer(boolean userPressedTrue) {
+		boolean answer = mTrueFalseList[mCurrentIndex].isAnswer();
+		int messageId = 0;
+		
+		if (answer == userPressedTrue) {
+			messageId = R.string.correct_toast;
+			
+		} else {
+			messageId = R.string.incorrect_toast;
+		}
+		Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show();
+	}
+	
 }
