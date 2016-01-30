@@ -92,7 +92,7 @@ public class QuizActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
+//				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
 				nextQuestion(mCurrentIndex);
 			}
 		});
