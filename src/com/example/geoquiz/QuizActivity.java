@@ -40,7 +40,7 @@ public class QuizActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "OnCreate(Bundle) called");
+		Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
 		
 		mTrueButton = (Button) findViewById(R.id.true_button);
