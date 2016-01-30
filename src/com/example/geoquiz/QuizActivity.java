@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class QuizActivity extends ActionBarActivity {
 	
 	public static final String TAG = "QuizActivity";
+	public static final String KEY_INDEX = "questionNumber";
 
 	private Button mTrueButton;
 	private Button mFalseButton;
@@ -95,9 +96,24 @@ public class QuizActivity extends ActionBarActivity {
 				nextQuestion(mCurrentIndex);
 			}
 		});
+		
+		if (savedInstanceState != null) {
+			mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+		
+		}
 		nextQuestion(mCurrentIndex);
 
 	}
+	
+	//Метод для сохранения значений переменных между реализациями активити (например, при повороте устройства)
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+		Log.i(TAG, "called onSaveInstanceState(Bundle)");
+		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+	}
+	
 	
 	@Override
 	public void onStart () {
