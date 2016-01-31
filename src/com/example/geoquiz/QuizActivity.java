@@ -16,7 +16,7 @@ import android.widget.Toast;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class QuizActivity extends ActionBarActivity {
 	
-	public static final String TAG = "QuizActivity";
+//	public static final String TAG = "QuizActivity";
 	public static final String KEY_INDEX = "questionNumber";
 
 	private Button mTrueButton;
@@ -91,7 +91,7 @@ public class QuizActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-//				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
+				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
 				nextQuestion(mCurrentIndex);
 			}
 		});
