@@ -40,7 +40,6 @@ public class QuizActivity extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
 		
 		mTrueButton = (Button) findViewById(R.id.true_button);
@@ -110,7 +109,6 @@ public class QuizActivity extends ActionBarActivity {
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
-		Log.i(TAG, "called onSaveInstanceState(Bundle)");
 		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
 	}
 	
@@ -118,31 +116,26 @@ public class QuizActivity extends ActionBarActivity {
 	@Override
 	public void onStart () {
 		super.onStart();
-		Log.d(TAG, "onStart() called");
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
-		Log.d(TAG, "onResume() called");
 	}
 	
 	@Override
 	public void onPause() {
 		super.onPause();
-		Log.d(TAG, "onPause() called");
 	}
 	
 	@Override
 	public void onStop() {
 		super.onStop();
-		Log.d(TAG, "onStop() called");
 	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Log.d(TAG, "onDestroy() called");
 	}
 	
 	//Методы для меню
@@ -169,7 +162,6 @@ public class QuizActivity extends ActionBarActivity {
 	
 	// Самописные методы
 	private void nextQuestion(int currentIndex) {
-		Log.d(TAG, "Updating question text for question #" + mCurrentIndex, new Exception());
 		int question = mTrueFalseList[currentIndex].getQuestion();
 		mQuestionTextView.setText(question);
 	}
