@@ -169,6 +169,7 @@ public class QuizActivity extends ActionBarActivity {
 	
 	// Самописные методы
 	private void nextQuestion(int currentIndex) {
+		Log.d(TAG, "Updating question text for question #" + mCurrentIndex, new Exception());
 		int question = mTrueFalseList[currentIndex].getQuestion();
 		mQuestionTextView.setText(question);
 	}
