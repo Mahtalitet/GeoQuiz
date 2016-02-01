@@ -1,6 +1,7 @@
 package com.example.geoquiz;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -103,7 +104,8 @@ public class QuizActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				// Запуск CheatActivity
+				Intent i = new Intent(QuizActivity.this, CheatActivity.class);
+				startActivity(i);
 				
 			}
 		});
