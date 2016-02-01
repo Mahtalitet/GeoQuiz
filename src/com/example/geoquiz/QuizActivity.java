@@ -20,6 +20,7 @@ public class QuizActivity extends ActionBarActivity {
 	public static final String TAG = "QuizActivity";
 	public static final String KEY_INDEX = "questionNumber";
 
+
 	private Button mTrueButton;
 	private Button mFalseButton;
 	private ImageButton mNextButton;
@@ -105,6 +106,8 @@ public class QuizActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(QuizActivity.this, CheatActivity.class);
+				boolean trueAnswerIs = mTrueFalseList[mCurrentIndex].isAnswer();
+				i.putExtra(CheatActivity.EXTRA_TRUE_ANSWER_IS, trueAnswerIs);
 				startActivity(i);
 				
 			}
