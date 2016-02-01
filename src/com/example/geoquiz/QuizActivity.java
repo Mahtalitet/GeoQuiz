@@ -23,6 +23,7 @@ public class QuizActivity extends ActionBarActivity {
 	private Button mFalseButton;
 	private ImageButton mNextButton;
 	private ImageButton mBackButton;
+	private Button mCheatButton;
 	private TextView mQuestionTextView;
 	private TrueFalse[] mTrueFalseList = {
 		new TrueFalse(R.string.question_russia, false),
@@ -94,6 +95,16 @@ public class QuizActivity extends ActionBarActivity {
 			public void onClick(View v) {
 				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
 				nextQuestion(mCurrentIndex);
+			}
+		});
+		
+		mCheatButton = (Button) findViewById(R.id.cheat_button);
+		mCheatButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// Запуск CheatActivity
+				
 			}
 		});
 		
