@@ -36,6 +36,7 @@ public class QuizActivity extends ActionBarActivity {
 		new TrueFalse(R.string.question_oceans, true)
 	};
 	private int mCurrentIndex = 0;
+	private boolean isCheater;
 	
 	
 	//Переопределение методов жизненного цикла активити
@@ -77,16 +78,13 @@ public class QuizActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				
+				isCheater = false;
 				if (mCurrentIndex != 0) {
 					mCurrentIndex--;
-					nextQuestion(mCurrentIndex);
-
-					
 				} else {
 					mCurrentIndex = Math.abs(mCurrentIndex - (mTrueFalseList.length-1));
-					nextQuestion(mCurrentIndex);
 				}
+				nextQuestion(mCurrentIndex);
 			}
 		});
 		
@@ -95,6 +93,7 @@ public class QuizActivity extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
+				isCheater = false;
 				mCurrentIndex = (mCurrentIndex + 1) % mTrueFalseList.length;
 				nextQuestion(mCurrentIndex);
 			}
@@ -108,14 +107,13 @@ public class QuizActivity extends ActionBarActivity {
 				Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 				boolean trueAnswerIs = mTrueFalseList[mCurrentIndex].isAnswer();
 				i.putExtra(CheatActivity.EXTRA_TRUE_ANSWER_IS, trueAnswerIs);
-				startActivity(i);
+				startActivityForResult(i, 0);
 				
 			}
 		});
 		
 		if (savedInstanceState != null) {
 			mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
-		
 		}
 		nextQuestion(mCurrentIndex);
 
@@ -128,6 +126,17 @@ public class QuizActivity extends ActionBarActivity {
 		super.onSaveInstanceState(savedInstanceState);
 		Log.i(TAG, "called onSaveInstanceState(Bundle)");
 		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+	}
+	
+	//Метод для получения значения через интент, возвращаемый дочерней активностью
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent inputIntent) {
+		if (inputIntent == null) {
+			return;
+		}
+		
+		isCheater = inputIntent.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
+		
 	}
 	
 	
@@ -193,11 +202,16 @@ public class QuizActivity extends ActionBarActivity {
 		boolean answer = mTrueFalseList[mCurrentIndex].isAnswer();
 		int messageId = 0;
 		
-		if (answer == userPressedTrue) {
-			messageId = R.string.correct_toast;
-			
+		if (isCheater) {
+			messageId = R.string.judgment_toast;
+		
 		} else {
-			messageId = R.string.incorrect_toast;
+			if (answer == userPressedTrue) {
+				messageId = R.string.correct_toast;
+				
+			} else {
+				messageId = R.string.incorrect_toast;
+			}
 		}
 		Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show();
 	}

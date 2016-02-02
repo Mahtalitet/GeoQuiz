@@ -1,6 +1,7 @@
 package com.example.geoquiz;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,11 +12,12 @@ import android.widget.TextView;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class CheatActivity extends ActionBarActivity {
 	public static final String EXTRA_TRUE_ANSWER_IS = "com.example.geoquiz.true_answer_is";
+	public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 	
 	private boolean true_answer_is;
 	private Button mShowButton;
 	private TextView mTextAnswer;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +25,8 @@ public class CheatActivity extends ActionBarActivity {
 		
 		true_answer_is = getIntent().getBooleanExtra(EXTRA_TRUE_ANSWER_IS, false);
 		mTextAnswer = (TextView) findViewById(R.id.text_answer);
+		
+		creatingIntent(false);
 		
 		mShowButton = (Button) findViewById(R.id.show_answer_button);
 		mShowButton.setOnClickListener(new View.OnClickListener() {
@@ -34,11 +38,15 @@ public class CheatActivity extends ActionBarActivity {
 				} else {
 					mTextAnswer.setText(R.string.false_button);
 				}
-				
+				creatingIntent(true);
 			}
 		});
-		
-		
+	}
+	
+	private void creatingIntent(boolean status) {
+		Intent intent = new Intent();
+		intent.putExtra(EXTRA_ANSWER_SHOWN, status);
+		setResult(RESULT_OK, intent);
 	}
 	
 }
