@@ -129,6 +129,7 @@ public class QuizActivity extends ActionBarActivity {
 	}
 	
 	//Метод для получения значения через интент, возвращаемый дочерней активностью
+	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent inputIntent) {
 		if (inputIntent == null) {

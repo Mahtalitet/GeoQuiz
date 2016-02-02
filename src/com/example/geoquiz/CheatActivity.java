@@ -13,8 +13,10 @@ import android.widget.TextView;
 public class CheatActivity extends ActionBarActivity {
 	public static final String EXTRA_TRUE_ANSWER_IS = "com.example.geoquiz.true_answer_is";
 	public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
+	public static final String KEY_CHEATED = "isCheated";
 	
 	private boolean true_answer_is;
+	private boolean isCheated;
 	private Button mShowButton;
 	private TextView mTextAnswer;
 	
@@ -26,11 +28,11 @@ public class CheatActivity extends ActionBarActivity {
 		true_answer_is = getIntent().getBooleanExtra(EXTRA_TRUE_ANSWER_IS, false);
 		mTextAnswer = (TextView) findViewById(R.id.text_answer);
 		
-		creatingIntent(false);
+		isCheated = false;
+		creatingIntent(isCheated);
 		
 		mShowButton = (Button) findViewById(R.id.show_answer_button);
 		mShowButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				if (true_answer_is) {
@@ -38,15 +40,28 @@ public class CheatActivity extends ActionBarActivity {
 				} else {
 					mTextAnswer.setText(R.string.false_button);
 				}
-				creatingIntent(true);
+				isCheated = true;
+				creatingIntent(isCheated);
 			}
 		});
+		
+		if (savedInstanceState != null) {
+			isCheated = savedInstanceState.getBoolean(KEY_CHEATED, false);
+			creatingIntent(isCheated);
+		}
 	}
 	
 	private void creatingIntent(boolean status) {
 		Intent intent = new Intent();
 		intent.putExtra(EXTRA_ANSWER_SHOWN, status);
 		setResult(RESULT_OK, intent);
+	}
+	
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+		super.onSaveInstanceState(savedInstanceState);
+		savedInstanceState.putBoolean(KEY_CHEATED, isCheated);
 	}
 	
 }
