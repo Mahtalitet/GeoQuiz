@@ -18,7 +18,8 @@ import android.widget.Toast;
 public class QuizActivity extends ActionBarActivity {
 	
 	public static final String TAG = "QuizActivity";
-	public static final String KEY_INDEX = "questionNumber";
+	public static final String KEY_ANSWER = "questionNumber";
+	public static final String KEY_CHEATER = "cheatingStatus";
 
 
 	private Button mTrueButton;
@@ -113,7 +114,8 @@ public class QuizActivity extends ActionBarActivity {
 		});
 		
 		if (savedInstanceState != null) {
-			mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+			mCurrentIndex = savedInstanceState.getInt(KEY_ANSWER, 0);
+			isCheater = savedInstanceState.getBoolean(KEY_CHEATER, false);
 		}
 		nextQuestion(mCurrentIndex);
 
@@ -125,7 +127,8 @@ public class QuizActivity extends ActionBarActivity {
 	public void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
 		Log.i(TAG, "called onSaveInstanceState(Bundle)");
-		savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+		savedInstanceState.putInt(KEY_ANSWER, mCurrentIndex);
+		savedInstanceState.putBoolean(KEY_CHEATER, isCheater);
 	}
 	
 	//Метод для получения значения через интент, возвращаемый дочерней активностью
