@@ -28,7 +28,7 @@ public class CheatActivity extends ActionBarActivity {
 		true_answer_is = getIntent().getBooleanExtra(EXTRA_TRUE_ANSWER_IS, false);
 		mTextAnswer = (TextView) findViewById(R.id.text_answer);
 		
-		isCheated = false;
+		isCheated = getIntent().getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
 		creatingIntent(isCheated);
 		
 		mShowButton = (Button) findViewById(R.id.show_answer_button);

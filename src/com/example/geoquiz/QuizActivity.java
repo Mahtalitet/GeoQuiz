@@ -37,7 +37,8 @@ public class QuizActivity extends ActionBarActivity {
 		new TrueFalse(R.string.question_oceans, true)
 	};
 	private int mCurrentIndex = 0;
-	private boolean isCheater;
+	private boolean[] mCheatingStatus = new boolean[mTrueFalseList.length];
+	private boolean isCheater = false;
 	
 	
 	//Переопределение методов жизненного цикла активити
@@ -108,6 +109,7 @@ public class QuizActivity extends ActionBarActivity {
 				Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 				boolean trueAnswerIs = mTrueFalseList[mCurrentIndex].isAnswer();
 				i.putExtra(CheatActivity.EXTRA_TRUE_ANSWER_IS, trueAnswerIs);
+				i.putExtra(CheatActivity.EXTRA_ANSWER_SHOWN, isCheater);
 				startActivityForResult(i, 0);
 				
 			}
