@@ -19,7 +19,7 @@ public class QuizActivity extends ActionBarActivity {
 	
 	public static final String TAG = "QuizActivity";
 	public static final String KEY_ANSWER = "questionNumber";
-	public static final String KEY_CHEATER = "cheatingStatus";
+	public static final String KEY_CHEATING_STATUS = "cheatingStatus";
 
 
 	private Button mTrueButton;
@@ -106,7 +106,6 @@ public class QuizActivity extends ActionBarActivity {
 				Intent i = new Intent(QuizActivity.this, CheatActivity.class);
 				boolean trueAnswerIs = mTrueFalseList[mCurrentIndex].isAnswer();
 				i.putExtra(CheatActivity.EXTRA_TRUE_ANSWER_IS, trueAnswerIs);
-				i.putExtra(CheatActivity.EXTRA_ANSWER_SHOWN, mCheatingStatus[mCurrentIndex]);
 				startActivityForResult(i, 0);
 				
 			}
@@ -114,7 +113,7 @@ public class QuizActivity extends ActionBarActivity {
 		
 		if (savedInstanceState != null) {
 			mCurrentIndex = savedInstanceState.getInt(KEY_ANSWER, 0);
-			mCheatingStatus = savedInstanceState.getBooleanArray(KEY_CHEATER);
+			mCheatingStatus = savedInstanceState.getBooleanArray(KEY_CHEATING_STATUS);
 		}
 		nextQuestion(mCurrentIndex);
 
@@ -127,7 +126,7 @@ public class QuizActivity extends ActionBarActivity {
 		super.onSaveInstanceState(savedInstanceState);
 		Log.i(TAG, "called onSaveInstanceState(Bundle)");
 		savedInstanceState.putInt(KEY_ANSWER, mCurrentIndex);
-		savedInstanceState.putBooleanArray(KEY_CHEATER, mCheatingStatus);
+		savedInstanceState.putBooleanArray(KEY_CHEATING_STATUS, mCheatingStatus);
 	}
 	
 	//Метод для получения значения через интент, возвращаемый дочерней активностью
@@ -139,7 +138,9 @@ public class QuizActivity extends ActionBarActivity {
 		}
 		
 		boolean isCheater = inputIntent.getBooleanExtra(CheatActivity.EXTRA_ANSWER_SHOWN, false);
-		mCheatingStatus[mCurrentIndex] = isCheater;
+		if (isCheater) {
+			mCheatingStatus[mCurrentIndex] = isCheater;
+		}
 	}
 	
 	
