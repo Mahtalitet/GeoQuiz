@@ -1,16 +1,16 @@
 package com.example.geoquiz;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class CheatActivity extends ActionBarActivity {
+public class CheatActivity extends Activity {
 	public static final String EXTRA_TRUE_ANSWER_IS = "com.example.geoquiz.true_answer_is";
 	public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 	public static final String KEY_CHEATED = "isCheated";

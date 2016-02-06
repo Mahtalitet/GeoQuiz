@@ -1,11 +1,11 @@
 package com.example.geoquiz;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class QuizActivity extends AppCompatActivity	 {
+public class QuizActivity extends Activity {
 	
 	public static final String TAG = "QuizActivity";
 	public static final String KEY_ANSWER = "questionNumber";
@@ -50,8 +50,8 @@ public class QuizActivity extends AppCompatActivity	 {
 		setContentView(R.layout.activity_quiz);
 		
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			ActionBar actionBar = getSupportActionBar();
-			actionBar.setSubtitle("xaxaxa");
+			ActionBar actionBar = getActionBar();
+			actionBar.setSubtitle("Pooka!");
 			
 		}
 
