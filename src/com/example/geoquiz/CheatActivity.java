@@ -19,6 +19,7 @@ public class CheatActivity extends Activity {
 	private boolean isCheated;
 	private Button mShowButton;
 	private TextView mTextAnswer;
+	private TextView mCompileVersion;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class CheatActivity extends Activity {
 		
 		true_answer_is = getIntent().getBooleanExtra(EXTRA_TRUE_ANSWER_IS, false);
 		mTextAnswer = (TextView) findViewById(R.id.text_answer);
+		mCompileVersion = (TextView) findViewById(R.id.version_compile);
 		
 		mShowButton = (Button) findViewById(R.id.show_answer_button);
 		mShowButton.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,8 @@ public class CheatActivity extends Activity {
 				creatingIntent(isCheated);
 			}
 		}
+		
+		mCompileVersion.setText("API level "+Build.VERSION.SDK_INT);
 	}
 	
 	private void creatingIntent(boolean status) {
